@@ -4,13 +4,21 @@ public class HillClimber {
     private static final int _SIZEMAX = 20;
 
     public Result firstImprovement(int nbIter, Automata automata) {
-
         Initialization init = new Initialization();
+
         int rules[] = new int[_NBRULES];
         init.init(rules);
 
+        return firstImprovement(nbIter, automata, rules);
+    }
+
+    public Result firstImprovement(int nbIter, Automata automata, int[] initialRules) {
+
+        Initialization init = new Initialization();
+        int rules[] = initialRules;
+
         int fitness = automata.f(rules, _SIZEMAX);
-        System.out.println("Fitness : " + fitness);
+        // System.out.println("Fitness : " + fitness);
 
         int i = 0;
 
@@ -36,11 +44,6 @@ public class HillClimber {
             i++;
 
         } while (i < nbIter);
-
-        System.out.println(fitness);
-        for(int k = 0; k < _NBRULES; k++){
-            System.out.print(rules[k] + " ");
-        }
 
         return new Result(fitness, rules);
     }

@@ -67,7 +67,20 @@ public class Test {
         System.out.println("The End.");
 
         HillClimber hc = new HillClimber();
-        hc.firstImprovement(600000, automate);
+        Result resHC = hc.firstImprovement(600000, automate);
+        System.out.println("Fitness final FI : " + resHC.getFitness());
+        for(int i = 0; i < resHC.getRules().length; i++){
+            System.out.print(resHC.getRules()[i] + " ");
+        }
+
+        System.out.println(" ");
+
+        ILS ils = new ILS();
+        Result resILS = ils.ILS(300, 200000, automate);
+        System.out.println("Fitness final ILS : " + resILS.getFitness());
+        for(int i = 0; i < resILS.getRules().length; i++){
+            System.out.print(resILS.getRules()[i] + " ");
+        }
     }
 
     public static void printToFile(int fitness, int [] rules, PrintWriter ecrivain) {
